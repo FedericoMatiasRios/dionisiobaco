@@ -1,0 +1,190 @@
+@layer base {
+  html, body {
+    font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+  }
+  h1, h2, h3, h4 {
+    font-family: 'Playfair Display', serif;
+  }
+}
+
+:root{
+  --ebano: #171513; /* fondo principal */
+  --vino: #691C2D; /* identidad principal */
+  --oliva: #3F4931; /* hojas de vid */
+  --oro: #B8944D; /* toque clásico */
+  --marfil: #F1E8D5; /* fondos claros / texto sobre oscuro */
+}
+
+/* small visual tweaks */
+.rounded-2xl { border-radius: 1rem; }
+
+/* Site background + text for dark theme */
+body.site-bg{
+  /* background image with dark overlay for legibility */
+  background: linear-gradient(rgba(23,21,19,0.65), rgba(23,21,19,1)), url('img/dionisiobaco-background.webp');
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  color: var(--marfil) !important;
+  min-height: 100vh;
+}
+
+/* header glass tuned for dark background */
+.site-header{
+  background: linear-gradient(180deg, rgba(241,232,213,0.06), rgba(241,232,213,0.02));
+  border-bottom: 1px solid rgba(241,232,213,0.06);
+}
+
+/* cards use marfil on dark background */
+.card{
+  background: var(--marfil);
+  color: var(--ebano);
+}
+
+/* Primary button */
+.btn-primary{
+  background: linear-gradient(180deg,var(--vino), #4e1422);
+  color: var(--marfil);
+}
+
+.btn-ghost{
+  background: transparent;
+  color: var(--marfil);
+  border: 1px solid rgba(241,232,213,0.12);
+}
+
+.link-primary{ color: var(--marfil); }
+.link-on-light{ color: var(--vino); }
+
+.muted{ color: rgba(241,232,213,0.85); }
+
+/* small card subtext */
+.card-subtext{ color: rgba(23,21,19,0.7); }
+
+/* Responsive helper */
+@media (min-width: 1024px) {
+  .hero-offset { margin-top: 2rem; }
+}
+
+/* WhatsApp floating button */
+.whatsapp-btn{
+  position: fixed !important;
+  right: calc(20px + env(safe-area-inset-right));
+  bottom: calc(20px + env(safe-area-inset-bottom));
+  width: 64px;
+  height: 64px;
+  box-sizing: border-box;
+  border-radius: 9999px;
+  background: var(--oliva);
+  color: var(--marfil);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+  z-index: 9999;
+  transition: transform 160ms ease, box-shadow 160ms ease;
+  text-decoration: none;
+}
+.whatsapp-btn:hover{ transform: translateY(-6px) scale(1.03); box-shadow: 0 18px 40px rgba(0,0,0,0.45); }
+.whatsapp-btn .icon{ width: 28px; height: 28px; display: block; color: currentColor; }
+.whatsapp-btn .icon path{ fill: currentColor; }
+
+@media (max-width: 420px){
+  .whatsapp-btn{ width:56px; height:56px; }
+  .whatsapp-btn .icon{ width:24px; height:24px; }
+}
+
+/* User's provided floating button styles (exact) */
+a{
+  text-decoration:none;
+}
+.floating_btn {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 100px;
+  height: 100px;
+  display: flex;
+  flex-direction: column;
+  align-items:center;
+  justify-content:center;
+  z-index: 1000;
+}
+
+@keyframes pulsing {
+  to {
+    box-shadow: 0 0 0 30px rgba(232, 76, 61, 0);
+  }
+}
+
+.contact_icon {
+  background-color: #285943;
+  color: #fff;
+  width: 60px;
+  height: 60px;
+  font-size:30px;
+  border-radius: 50px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 0 0 #285943;
+  -webkit-animation: pulsing 2s infinite cubic-bezier(0.66, 0, 0, 1);
+  -moz-animation: pulsing 2s infinite cubic-bezier(0.66, 0, 0, 1);
+  -ms-animation: pulsing 2s infinite cubic-bezier(0.66, 0, 0, 1);
+  animation: pulsing 2s infinite cubic-bezier(0.66, 0, 0, 1);
+}
+
+/* Productos gallery */
+.productos-grid{
+  display:grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px,1fr));
+  gap:16px;
+}
+.producto-card{ background: linear-gradient(180deg,#fff,#f6f6f6); padding:8px; display:flex; align-items:center; justify-content:center; }
+.producto-img{ max-width:100%; height:160px; object-fit:contain; background:transparent; display:block; }
+
+@media (min-width:1024px){
+  .producto-img{ height:200px; }
+}
+
+.producto-card img{ display:block; max-height:240px; }
+.producto-card{ background: #fff; padding:8px; border:1px solid rgba(0,0,0,0.04); }
+
+/* Header scrolled state: solid background for legibility when overlapping content */
+.site-header{
+  transition: background-color 240ms ease, backdrop-filter 240ms ease, border-color 240ms ease;
+}
+.site-header.scrolled{
+  background: rgba(23,21,19,0.50); /* replace gradient with solid dark background */
+  background-image: none;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border-bottom-color: rgba(0,0,0,0.18);
+}
+.site-header.scrolled .link-primary{ color: var(--marfil); }
+.site-header.scrolled .btn-primary{ color: var(--marfil); }
+
+/* Small visual tweak to ensure header content remains readable */
+.site-header a, .site-header button{ color: inherit; }
+
+/* Legal modal (Privacidad / Términos) */
+.legal-modal{
+  position: fixed;
+  inset: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 99999;
+}
+.legal-modal.open{ display: flex; }
+.legal-modal .overlay{ position: absolute; inset: 0; background: rgba(0,0,0,0.6); }
+.legal-modal .dialog{ position: relative; max-width: 820px; width: calc(100% - 48px); background: var(--marfil); color: var(--ebano); border-radius: 12px; box-shadow: 0 30px 60px rgba(0,0,0,0.35); overflow: auto; max-height: 80vh; z-index: 2; }
+.legal-modal .dialog header{ padding: 18px 20px; border-bottom: 1px solid rgba(0,0,0,0.06); display:flex; align-items:center; justify-content:space-between; }
+.legal-modal .dialog header h3{ margin:0; font-size:1.05rem; }
+.legal-modal .dialog .content{ padding: 18px 20px; font-size:0.95rem; line-height:1.5; }
+.legal-modal .dialog .actions{ padding: 12px 20px; border-top: 1px solid rgba(0,0,0,0.04); display:flex; justify-content:flex-end; }
+.legal-modal .btn-close{ background: transparent; border: none; font-weight:700; color: var(--ebano); padding:6px 10px; cursor:pointer; }
+

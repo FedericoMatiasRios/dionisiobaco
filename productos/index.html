@@ -1,0 +1,307 @@
+<!doctype html>
+<html lang="es-AR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Productos — Dionisio Baco</title>
+    <meta name="description" content="Venta mayorista de vinos, cervezas y licores — curados, confiables y con presentación cuidada." />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="../styles.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link rel="icon" href="../img/dionisiobaco-logo5.webp">
+  </head>
+  <body class="antialiased site-bg">
+    <header class="site-header sticky top-0 z-40">
+      <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+        <a href="../index.html" class="flex items-center gap-3">
+          <div class="w-20 h-20 flex items-center justify-center">
+            <img src="../img/dionisiobaco-logo5.webp" alt="Dionisio Baco" class="w-full h-full object-contain">
+          </div>
+          <div>
+            <h1 class="text-lg font-semibold" style="font-family: 'Playfair Display', serif;">Dionisio Baco</h1>
+            <p class="text-xs muted">Vinos • Cervezas • Licores — Venta Mayorista</p>
+          </div>
+        </a>
+        <nav class="hidden md:flex gap-6 items-center text-sm">
+          <a href="../productos/" class="link-primary">Productos</a>
+          <a href="../index.html#about" class="link-primary">Nosotros</a>
+          <a href="https://wa.me/5491125369170?text=Hola%2C%20quisiera%20la%20lista%20de%20precios%20actualizada%2C%20por%20favor" class="ml-4 px-4 py-2 btn-primary rounded-md shadow" target="_blank" rel="noopener">Lista de precios</a>
+        </nav>
+        <button class="md:hidden p-2 rounded-md" style="color:var(--marfil); background:transparent; border:1px solid rgba(241,232,213,0.06);">☰</button>
+      </div>
+    </header>
+
+    <main class="mt-12 max-w-6xl mx-auto px-6">
+      <h2 class="text-3xl font-semibold">Catálogo completo</h2>
+      <p class="muted mt-2">Se muestran las imágenes disponibles dentro de <strong>img/productos</strong>. Esta página busca automáticamente archivos de imagen y también acepta un archivo <code>index.json</code> con la lista de nombres.</p>
+
+      <section class="mt-6">
+        <div id="productos-gallery" class="productos-grid"></div>
+        <div id="productos-status" class="mt-4 text-sm muted"></div>
+        <div id="productos-sentinel" class="mt-6">&nbsp;</div>
+      </section>
+    </main>
+
+    <footer class="mt-20 border-t">
+      <div class="max-w-6xl mx-auto px-6 py-8 flex flex-col md:flex-row items-center justify-between text-sm muted">
+        <div>© 2026 Dionisio Baco — Todos los derechos reservados</div>
+        <div class="mt-3 md:mt-0">Hecho con dedicación • <a href="#" class="link-primary js-legal" data-legal="privacy">Privacidad</a> • <a href="#" class="link-primary js-legal" data-legal="terms">Términos</a></div>
+      </div>
+    </footer>
+
+    <div class="floating_btn">
+      <a target="_blank" href="https://wa.me/5491125369170">
+        <div class="contact_icon">
+          <i class="fa fa-whatsapp my-float"></i>
+        </div>
+      </a>
+    </div>
+
+    <script>
+      (function(){
+        const container = document.getElementById('productos-gallery');
+        const statusEl = document.getElementById('productos-status');
+        const sentinel = document.getElementById('productos-sentinel');
+        if(!container || !sentinel) return;
+
+        const exts = ['png','jpg','jpeg','webp'];
+        const pageSize = 48;
+        const initialLoadCount = 144; // show more products on first load
+        let page = 0;
+        let loading = false;
+        let sourceList = null; // if index.json is available
+        let numericFinished = false;
+        let numericNextIndex = 1;
+
+        function wrapCard(img, name){
+          const wrapper = document.createElement('div');
+          // use group to apply hover styles to children
+          wrapper.className = 'producto-card group relative rounded-md overflow-hidden';
+
+          img.className = 'producto-img block w-full h-full object-cover';
+          img.loading = 'lazy';
+          img.alt = name || '';
+
+          // overlay: keep image fully visible; place small button at bottom-right on mobile
+          const overlay = document.createElement('div');
+          overlay.className = 'absolute inset-0 flex items-end justify-end p-2 pointer-events-none transition-all duration-200';
+
+          const btn = document.createElement('a');
+          const phone = '5491125369170';
+          const baseName = (typeof name === 'string') ? name.replace(/\.[^/.]+$/, '') : String(name);
+          const msg = encodeURIComponent(`Hola, quiero consultar este producto: ${baseName}`);
+          btn.href = `https://wa.me/${phone}?text=${msg}`;
+          btn.target = '_blank';
+          btn.rel = 'noopener';
+          btn.setAttribute('aria-label', `Consultar ${name}`);
+          // small rounded button placed at bottom-right; visible on mobile and appears on hover for md+
+          btn.className = 'px-2 py-1 text-sm bg-white bg-opacity-95 backdrop-blur-sm rounded-full font-semibold shadow-lg ring-1 ring-gray-200 opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-all duration-200 pointer-events-auto';
+          btn.style.color = 'var(--ebano)';
+          btn.textContent = 'Consultar';
+
+          overlay.appendChild(btn);
+
+          wrapper.appendChild(img);
+          wrapper.appendChild(overlay);
+          return wrapper;
+        }
+
+        async function renderFromList(){
+          const start = page * pageSize;
+          const items = sourceList.slice(start, start + pageSize);
+          for(const fname of items){
+            const img = document.createElement('img');
+            img.src = '../img/productos/' + fname;
+            container.appendChild(wrapCard(img, fname));
+          }
+          page++;
+          statusEl.textContent = `Mostrando ${container.children.length} productos.`;
+          if(page * pageSize >= sourceList.length) observer.disconnect();
+        }
+
+        // Probe by creating Image objects (works reliably when serving static files)
+        function probeIndexWithImage(i){
+          return new Promise(resolve => {
+            let resolved = false;
+            const img = new Image();
+            img.decoding = 'async';
+            img.onload = () => { if(!resolved){ resolved=true; resolve({ img, name: String(i) }); } };
+            img.onerror = () => { if(!resolved){ resolved=true; resolve(null); } };
+            // try extensions in order by assigning and waiting briefly for load/error
+            // We'll attempt sequentially: set first extension, onerror try next
+            let extIndex = 0;
+            function tryNext(){
+              if(extIndex >= exts.length){ if(!resolved){ resolved=true; resolve(null); } return; }
+              img.src = `../img/productos/${i}.${exts[extIndex]}`;
+              extIndex++;
+            }
+            img.onload = () => { if(!resolved){ resolved=true; resolve({ img, name: `${i}.${exts[extIndex-1]}` }); } };
+            img.onerror = () => { if(!resolved){ tryNext(); } };
+            tryNext();
+          });
+        }
+
+        async function renderNumericPage(count = pageSize){
+          const start = numericNextIndex;
+          const end = start + count - 1;
+          const probes = [];
+          for(let i=start;i<=end;i++) probes.push(probeIndexWithImage(i));
+          const results = await Promise.all(probes);
+          let foundAny = false;
+          for(const res of results){
+            if(res){
+              foundAny = true;
+              container.appendChild(wrapCard(res.img, res.name));
+            }
+          }
+          numericNextIndex = end + 1;
+          if(!foundAny){
+            if(!numericFinished){
+              numericFinished = true;
+              tryIndexJsonFallback();
+            }
+            observer.disconnect();
+            statusEl.textContent = `Mostrando ${container.children.length} productos.`;
+          } else {
+            statusEl.textContent = `Mostrando ${container.children.length} productos.`;
+            page++;
+          }
+        }
+
+        async function tryIndexJsonFallback(){
+          try{
+            const resp = await fetch('../img/productos/index.json');
+            if(!resp.ok) return;
+            const list = await resp.json();
+            if(Array.isArray(list) && list.length){
+              sourceList = list;
+              // reset pagination for list
+              page = 0;
+              // clear container and render from list start
+              container.innerHTML = '';
+              await renderFromList();
+              // reattach observer if more
+              if(page * pageSize < sourceList.length) observer.observe(sentinel);
+            }
+          }catch(err){ }
+        }
+
+        const observer = new IntersectionObserver((entries) => {
+          for(const entry of entries){
+            if(entry.isIntersecting && !loading){
+              loading = true;
+              statusEl.textContent = 'Cargando más productos...';
+              (async function(){
+                if(sourceList){
+                  await renderFromList();
+                } else if(!numericFinished){
+                  await renderNumericPage();
+                }
+                loading = false;
+              })();
+            }
+          }
+        }, { rootMargin: '400px' });
+
+        // Initialize: try index.json first
+        (async function init(){
+          statusEl.textContent = 'Preparando catálogo...';
+          try{
+            const resp = await fetch('../img/productos/index.json');
+            if(resp.ok){
+              const list = await resp.json();
+              if(Array.isArray(list) && list.length){
+                sourceList = list;
+                await renderFromList();
+                if(page * pageSize < sourceList.length) observer.observe(sentinel);
+                return;
+              }
+            }
+          }catch(err){ }
+
+          // No index.json — start numeric probing and load a larger initial batch
+          numericNextIndex = 1;
+          // load an initial chunk so the page shows many products immediately
+          await renderNumericPage(initialLoadCount);
+          // observe sentinel for further pages
+          observer.observe(sentinel);
+        })();
+
+      })();
+    </script>
+
+    <!-- Legal modal -->
+    <div id="legal-modal" class="legal-modal" role="dialog" aria-hidden="true">
+      <div class="overlay" data-close></div>
+      <div class="dialog" role="document" aria-modal="true">
+        <header>
+          <h3 id="legal-title">Política</h3>
+          <button class="btn-close" aria-label="Cerrar" data-close>✕</button>
+        </header>
+        <div class="content" id="legal-content">
+          <!-- filled dynamically -->
+        </div>
+        <div class="actions"><button class="btn-close" data-close>Cerrar</button></div>
+      </div>
+    </div>
+
+    <script>
+      (function(){
+        const modal = document.getElementById('legal-modal');
+        const titleEl = document.getElementById('legal-title');
+        const contentEl = document.getElementById('legal-content');
+        if(!modal || !titleEl || !contentEl) return;
+
+        const TEXTS = {
+          privacy: {
+            title: 'Política de Privacidad',
+            body: `En Dionisio Baco valoramos su privacidad. Recopilamos únicamente los datos necesarios para procesar pedidos y consultas (nombre, teléfono, correo y dirección de entrega). Estos datos se utilizan para contacto comercial, facturación y gestión logística. No vendemos ni cedemos datos a terceros para fines comerciales; sólo compartimos información con proveedores de entrega cuando es necesario para completar un servicio. Usted puede solicitar acceso, rectificación o eliminación de sus datos contactándonos por WhatsApp o correo. Conservamos la información el tiempo necesario para cumplir obligaciones legales y administrativas.`
+          },
+          terms: {
+            title: 'Términos y Condiciones',
+            body: `Los presentes Términos regulan la relación comercial entre Dionisio Baco y sus clientes. Las ofertas, precios y promociones son orientativas y están sujetas a disponibilidad y confirmación por parte de la empresa. Los pedidos se confirmarán mediante comunicación por WhatsApp o correo y estarán sujetos a stock y condiciones de pago acordadas. Los plazos de entrega son estimativos; demoras ocasionadas por terceros ajenos a la empresa no implican responsabilidad directa salvo acuerdo expreso. Para reclamaciones y devoluciones, contacte al equipo dentro de las 48 horas posteriores a la recepción. El uso del sitio implica la aceptación de estos términos.`
+          }
+        };
+
+        function open(type){
+          const item = TEXTS[type] || TEXTS.privacy;
+          titleEl.textContent = item.title;
+          contentEl.textContent = item.body;
+          modal.classList.add('open');
+          modal.setAttribute('aria-hidden','false');
+        }
+
+        function close(){ modal.classList.remove('open'); modal.setAttribute('aria-hidden','true'); }
+
+        document.querySelectorAll('.js-legal').forEach(a=>{
+          a.addEventListener('click', e=>{ e.preventDefault(); const t = a.dataset.legal || 'privacy'; open(t); });
+        });
+
+        modal.querySelectorAll('[data-close]').forEach(btn=> btn.addEventListener('click', close));
+        modal.addEventListener('keydown', e=>{ if(e.key === 'Escape') close(); });
+        modal.querySelector('.overlay').addEventListener('click', close);
+      })();
+    </script>
+
+    <script>
+      (function(){
+        const header = document.querySelector('.site-header');
+        if(!header) return;
+
+        function onScroll(){
+          if(window.scrollY > 16){
+            header.classList.add('scrolled');
+          } else {
+            header.classList.remove('scrolled');
+          }
+        }
+
+        // Run on load and on scroll
+        onScroll();
+        window.addEventListener('scroll', onScroll, { passive: true });
+      })();
+    </script>
+  </body>
+</html>

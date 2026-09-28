@@ -1,0 +1,385 @@
+<!doctype html>
+<html lang="es-AR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Dionisio Baco — Vinos, Cervezas y Licores al por Mayor</title>
+    <meta name="description" content="Venta mayorista de vinos, cervezas y licores — curados, confiables y con presentación cuidada." />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link rel="icon" href="img/dionisiobaco-logo5.webp">
+  </head>
+  <body class="antialiased site-bg">
+    <header class="site-header sticky top-0 z-40">
+      <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+        <a href="#" class="flex items-center gap-3">
+          <div class="w-20 h-20 flex items-center justify-center">
+            <img src="img/dionisiobaco-logo5.webp" alt="Dionisio Baco" class="w-full h-full object-contain">
+          </div>
+          <div>
+            <h1 class="text-lg font-semibold" style="font-family: 'Playfair Display', serif;">Dionisio Baco</h1>
+            <p class="text-xs muted">Vinos • Cervezas • Licores — Venta Mayorista</p>
+          </div>
+        </a>
+        <nav class="hidden md:flex gap-6 items-center text-sm">
+          <a href="productos/" class="link-primary">Productos</a>
+          <a href="#about" class="link-primary">Nosotros</a>
+          <a href="https://wa.me/5491125369170?text=Hola%2C%20quisiera%20la%20lista%20de%20precios%20actualizada%2C%20por%20favor" class="ml-4 px-4 py-2 btn-primary rounded-md shadow" target="_blank" rel="noopener">Lista de precios</a>
+        </nav>
+        <button class="md:hidden p-2 rounded-md" style="color:var(--marfil); background:transparent; border:1px solid rgba(241,232,213,0.06);">☰</button>
+      </div>
+    </header>
+
+    <main class="mt-8">
+      <!-- Hero -->
+      <section class="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+          <div class="py-12">
+          <h2 class="text-4xl md:text-5xl font-extrabold leading-tight" style="font-family: 'Playfair Display', serif;">Vinos y Cervezas seleccionados para cada ocasión</h2>
+          <p class="mt-4 muted max-w-xl">Suministramos a restaurantes, comercios y eventos dentro de CABA y AMBA con vinos, cervezas artesanales y licores premium seleccionados cuidadosamente. Precios competitivos, entrega confiable y atención dedicada.</p>
+          <div class="mt-6 flex gap-4 justify-center md:justify-start flex-col sm:flex-row">
+            <a href="productos/" class="w-full sm:w-auto px-4 md:px-6 py-3 btn-primary rounded-md shadow hover:brightness-95 text-center">Explorar catálogo</a>
+            <a href="https://wa.me/5491125369170?text=Hola%20necesito%20un%20presupuesto" class="w-full sm:w-auto px-4 md:px-6 py-3 btn-ghost rounded-md text-center" target="_blank" rel="noopener">Solicitar presupuesto</a>
+          </div>
+            <div class="mt-6 text-sm muted text-center md:text-left">
+              <span class="block md:inline">Confiado por más de 200 comercios</span>
+              <span class="block md:inline">• Envíos dentro de&nbsp;CABA y AMBA</span>
+            </div>
+        </div>
+
+        <div class="relative">
+          <div class="rounded-2xl overflow-hidden shadow-xl transform hover:scale-[1.01] transition-all duration-300">
+            <img src="img/distribuidora.png" alt="Botellas de vino" class="w-full h-80 object-cover">
+          </div>
+          <div class="static md:absolute md:-bottom-8 md:left-6 flex md:flex-row flex-col gap-4">
+            <div class="card rounded-xl p-4 shadow-lg w-full md:w-56">
+              <h4 class="font-semibold">Entrega rápida</h4>
+              <p class="text-sm card-subtext">Despacho la misma semana en la mayoría de los pedidos.</p>
+            </div>
+            <div class="card rounded-xl p-4 shadow-lg w-full md:w-56">
+              <h4 class="font-semibold">Responsable de cuenta</h4>
+              <p class="text-sm card-subtext">Asesoramiento personalizado y condiciones comerciales.</p>
+            </div>
+          </div>
+          <!-- Productos gallery loaded from img/productos (numeric .png files) -->
+        
+        </div>
+      </section>
+
+      <!-- Products -->
+      <section id="products" class="mt-24 max-w-6xl mx-auto px-6">
+        <div class="flex items-center justify-between">
+          <h3 class="text-2xl font-semibold">Promociones</h3>
+          <a href="productos/" class="text-sm link-primary">Ver catálogo completo →</a>
+        </div>
+
+        <div class="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <!-- Card 1 -->
+          <article class="card rounded-2xl overflow-hidden shadow hover:shadow-2xl transition flex flex-col h-full">
+            <img src="img/promo1.webp" alt="Red wine" class="w-full h-52 object-cover">
+            <div class="p-5 flex flex-col justify-between flex-1">
+              <h4 class="font-semibold">Staphyle Dragon 5+1</h4>
+              <p class="text-sm card-subtext mt-1">Comprando 5 cajas Staphyle Dragon te llevas 1 caja de regalo, 6 cajas por el precio de 5.</p>
+              <div class="mt-4 flex justify-center">
+                <a href="https://wa.me/5491125369170?text=Hola%20quiero%20consultar%20el%20precio%20de%20la%20promo%20Staphyle%20Dragon%205%2B1" class="px-3 py-2 btn-primary rounded-md text-sm inline-block shadow" target="_blank" rel="noopener">Consultar promo</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Card 2 -->
+          <article class="card rounded-2xl overflow-hidden shadow hover:shadow-2xl transition flex flex-col h-full">
+            <img src="img/promo2.webp" alt="Craft beer" class="w-full h-52 object-cover">
+            <div class="p-5 flex flex-col justify-between flex-1">
+              <h4 class="font-semibold">Staphyle Premium</h4>
+              <p class="text-sm card-subtext mt-1">Comprando 5 cajas (mezclables: Malbec, Bonarda, Cabernet Franc, Merlot, Cabernet Sauvignon, Chardonnay) te llevas 1 caja Cabernet Sauvignon de regalo.</p>
+              <div class="mt-4 flex justify-center">
+                <a href="https://wa.me/5491125369170?text=Hola%20quiero%20consultar%20el%20precio%20de%20la%20promo%20Staphyle%20Premium" class="px-3 py-2 btn-primary rounded-md text-sm inline-block shadow" target="_blank" rel="noopener">Consultar promo</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Card 3 -->
+          <article class="card rounded-2xl overflow-hidden shadow hover:shadow-2xl transition flex flex-col h-full">
+            <img src="img/promo3.webp" alt="Sparkling wine" class="w-full h-52 object-cover">
+            <div class="p-5 flex flex-col justify-between flex-1">
+              <h4 class="font-semibold">Staphyle Limitada 5+1</h4>
+              <p class="text-sm card-subtext mt-1">Comprando 5 cajas (mezclables: Malbec, Cabernet Franc, Petit Verdot, Cabernet-Malbec, Sauvigon Blanc) te llevas 1 caja Cabernet Franc de regalo.</p>
+              <div class="mt-4 flex justify-center">
+                <a href="https://wa.me/5491125369170?text=Hola%20quiero%20consultar%20el%20precio%20de%20la%20promo%20Staphyle%20Limitada%205%2B1" class="px-3 py-2 btn-primary rounded-md text-sm inline-block shadow" target="_blank" rel="noopener">Consultar promo</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Card 4 -->
+          <article class="card rounded-2xl overflow-hidden shadow hover:shadow-2xl transition flex flex-col h-full">
+            <img src="img/promo4.webp" alt="Sparkling wine" class="w-full h-52 object-cover">
+            <div class="p-5 flex flex-col justify-between flex-1">
+              <h4 class="font-semibold">Saurus Select 10+1</h4>
+              <p class="text-sm card-subtext mt-1">Comprando 10 cajas Saurus Select Malbec te llevas 1 caja Cabernet de regalo, 11 cajas por el precio de 10.</p>
+              <div class="mt-4 flex justify-center">
+                <a href="https://wa.me/5491125369170?text=Hola%20quiero%20consultar%20el%20precio%20de%20la%20promo%20Saurus%20Select%2010%2B1" class="px-3 py-2 btn-primary rounded-md text-sm inline-block shadow" target="_blank" rel="noopener">Consultar promo</a>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </section>
+
+      <!-- About & Testimonials -->
+      <section id="about" class="mt-24 max-w-6xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
+        <div>
+          <h3 class="text-2xl font-semibold">Sobre Dionisio Baco</h3>
+          <p class="mt-4 muted">Trabajamos con bodegas y cervecerías para ofrecer una amplia selección de bebidas de calidad a precios mayoristas. Nuestro equipo te ayuda a curar propuestas, gestionar stock y asegurar entregas puntuales.</p>
+          <ul class="mt-4 text-sm muted space-y-2">
+            <li>• Pedidos flexibles y descuentos por volumen</li>
+            <li>• Ejecutivos de cuenta dedicados</li>
+            <li>• Origen y trazabilidad responsable</li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="text-lg font-semibold">Qué dicen nuestros clientes</h4>
+          <blockquote id="testimonials" class="mt-4 card p-6 rounded-xl shadow">
+            <p id="testimonial-text" style="color:var(--ebano); opacity:0; transition:opacity 400ms">"Rápidos, confiables y con una selección excelente — nuestros eventos nunca lucieron mejor."</p>
+            <footer id="testimonial-author" class="mt-3 text-sm" style="color:var(--ebano); opacity:0; transition:opacity 400ms">— Sofía R., Responsable de Eventos</footer>
+          </blockquote>
+        </div>
+      </section>
+
+      <!-- Contact section removed per request; header link points to WhatsApp -->
+    </main>
+
+    <footer class="mt-20 border-t">
+      <div class="max-w-6xl mx-auto px-6 py-8 flex flex-col md:flex-row items-center justify-between text-sm muted">
+        <div>© 2026 Dionisio Baco — Todos los derechos reservados</div>
+        <div class="mt-3 md:mt-0">Hecho por <a href="https://www.badevs.com/" class="link-primary" target="_blank" rel="noopener">BAdevs</a> • <a href="#" class="link-primary js-legal" data-legal="privacy">Privacidad</a> • <a href="#" class="link-primary js-legal" data-legal="terms">Términos</a></div>
+      </div>
+    </footer>
+
+    <div class="floating_btn">
+    <a target="_blank" href="https://wa.me/5491125369170?text=Hola%20necesito%20un%20presupuesto">
+      <div class="contact_icon">
+        <i class="fa fa-whatsapp my-float"></i>
+      </div>
+    </a>
+  </div>
+
+    <script>
+      (function(){
+        const container = document.getElementById('productos-gallery');
+        const statusEl = document.getElementById('productos-status');
+        if(!container) return;
+
+        const exts = ['png','jpg','jpeg','webp'];
+        const concurrency = 12; // number of parallel probes
+        const maxIndex = 5000; // safety hard cap for probing
+        const probeChunk = 200; // probe these many indices per worker
+
+        function wrapCard(img, name){
+          const wrapper = document.createElement('div');
+          wrapper.className = 'producto-card rounded-md overflow-hidden';
+          img.className = 'producto-img';
+          img.loading = 'lazy';
+          img.alt = name || '';
+          wrapper.appendChild(img);
+          return wrapper;
+        }
+
+        function buildCandidates(count){
+          // If a numeric pattern is likely, probe sequentially from 1..count
+          const arr = [];
+          for(let i=1;i<=count;i++) arr.push(i);
+          return arr;
+        }
+
+        async function probeIndex(i){
+          for(const e of exts){
+            const url = `img/productos/${i}.${e}`;
+            try{
+              const resp = await fetch(url, { method:'HEAD' });
+              if(resp.ok && resp.headers.get('content-type')?.startsWith('image')){
+                const img = document.createElement('img');
+                img.src = url;
+                return { url, img, name: `${i}.${e}` };
+              }
+            }catch(err){ /* ignore network errors for this probe */ }
+          }
+          return null;
+        }
+
+        async function worker(indices){
+          for(const i of indices){
+            const found = await probeIndex(i);
+            if(found){
+              container.appendChild(wrapCard(found.img, found.name));
+            }
+          }
+        }
+
+        (async function loadAll(){
+          statusEl.textContent = 'Buscando imágenes...';
+
+          // Create candidate numeric indices to probe
+          const candidates = buildCandidates(Math.min(maxIndex, probeChunk * concurrency));
+
+          // Split into N chunks for concurrency
+          const chunks = [];
+          for(let i=0;i<concurrency;i++) chunks.push([]);
+          for(let idx=0; idx<candidates.length; idx++){
+            chunks[idx % concurrency].push(candidates[idx]);
+          }
+
+          // Run workers in parallel
+          await Promise.all(chunks.map(c=>worker(c)));
+
+          // If we found some, attempt a second pass to expand range near found count
+          const foundCount = container.children.length;
+          if(foundCount > 0){
+            statusEl.textContent = `Mostrando ${foundCount} productos.`;
+            // Optionally probe further indices up to foundCount*10 or a cap
+            const extra = Math.min(2000, foundCount * 5);
+            const start = candidates.length + 1;
+            const extraCandidates = [];
+            for(let i=start;i<start+extra;i++) extraCandidates.push(i);
+            // split and run
+            const chunks2 = [];
+            for(let i=0;i<concurrency;i++) chunks2.push([]);
+            for(let idx=0; idx<extraCandidates.length; idx++) chunks2[idx % concurrency].push(extraCandidates[idx]);
+            await Promise.all(chunks2.map(c=>worker(c)));
+            statusEl.textContent = `Mostrando ${container.children.length} productos.`;
+          } else {
+            statusEl.textContent = 'No se encontraron imágenes numeradas. Intentando lista con index.json...';
+
+            try{
+              const listResp = await fetch('img/productos/index.json');
+              if(listResp.ok){
+                const list = await listResp.json();
+                if(Array.isArray(list)){
+                  for(const fname of list){
+                    const img = document.createElement('img');
+                    img.src = 'img/productos/' + fname;
+                    container.appendChild(wrapCard(img, fname));
+                  }
+                  statusEl.textContent = `Mostrando ${container.children.length} productos desde index.json.`;
+                  return;
+                }
+              }
+            }catch(err){ /* ignore */ }
+
+            statusEl.textContent = 'No se encontraron imágenes. Suba archivos a img/productos/ o genere img/productos/index.json con una lista de nombres.';
+          }
+        })();
+      })();
+    </script>
+
+    <!-- Legal modal -->
+    <div id="legal-modal" class="legal-modal" role="dialog" aria-hidden="true">
+      <div class="overlay" data-close></div>
+      <div class="dialog" role="document" aria-modal="true">
+        <header>
+          <h3 id="legal-title">Política</h3>
+          <button class="btn-close" aria-label="Cerrar" data-close>✕</button>
+        </header>
+        <div class="content" id="legal-content">
+          <!-- filled dynamically -->
+        </div>
+        <div class="actions"><button class="btn-close" data-close>Cerrar</button></div>
+      </div>
+    </div>
+
+    <script>
+      (function(){
+        const modal = document.getElementById('legal-modal');
+        const titleEl = document.getElementById('legal-title');
+        const contentEl = document.getElementById('legal-content');
+        if(!modal || !titleEl || !contentEl) return;
+
+        const TEXTS = {
+          privacy: {
+            title: 'Política de Privacidad',
+            body: `En Dionisio Baco valoramos su privacidad. Recopilamos únicamente los datos necesarios para procesar pedidos y consultas (nombre, teléfono, correo y dirección de entrega). Estos datos se utilizan para contacto comercial, facturación y gestión logística. No vendemos ni cedemos datos a terceros para fines comerciales; sólo compartimos información con proveedores de entrega cuando es necesario para completar un servicio. Usted puede solicitar acceso, rectificación o eliminación de sus datos contactándonos por WhatsApp o correo. Conservamos la información el tiempo necesario para cumplir obligaciones legales y administrativas.`
+          },
+          terms: {
+            title: 'Términos y Condiciones',
+            body: `Los presentes Términos regulan la relación comercial entre Dionisio Baco y sus clientes. Las ofertas, precios y promociones son orientativas y están sujetas a disponibilidad y confirmación por parte de la empresa. Los pedidos se confirmarán mediante comunicación por WhatsApp o correo y estarán sujetos a stock y condiciones de pago acordadas. Los plazos de entrega son estimativos; demoras ocasionadas por terceros ajenos a la empresa no implican responsabilidad directa salvo acuerdo expreso. Para reclamaciones y devoluciones, contacte al equipo dentro de las 48 horas posteriores a la recepción. El uso del sitio implica la aceptación de estos términos.`
+          }
+        };
+
+        function open(type){
+          const item = TEXTS[type] || TEXTS.privacy;
+          titleEl.textContent = item.title;
+          contentEl.textContent = item.body;
+          modal.classList.add('open');
+          modal.setAttribute('aria-hidden','false');
+          // trap focus if desired (simple)
+        }
+
+        function close(){ modal.classList.remove('open'); modal.setAttribute('aria-hidden','true'); }
+
+        document.querySelectorAll('.js-legal').forEach(a=>{
+          a.addEventListener('click', e=>{ e.preventDefault(); const t = a.dataset.legal || 'privacy'; open(t); });
+        });
+
+        modal.querySelectorAll('[data-close]').forEach(btn=> btn.addEventListener('click', close));
+        modal.addEventListener('keydown', e=>{ if(e.key === 'Escape') close(); });
+        modal.querySelector('.overlay').addEventListener('click', close);
+      })();
+    </script>
+
+    <script>
+      (function(){
+        const testimonials = [
+          { text: '"Rápidos, confiables y con una selección excelente — nuestros eventos nunca lucieron mejor."', author: '— Sofía R., Responsable de Eventos (Agencia de Eventos, CABA)' },
+          { text: '"Excelente atención y entrega puntual; siempre cumplen con lo pactado."', author: '— Martín L., Gerente Gastronómico (Restaurante, Palermo)' },
+          { text: '"Buena relación calidad-precio y un catálogo muy variado para comercios minoristas."', author: '— Ana P., Propietaria (Comercio Gourmet, San Telmo)' },
+          { text: '"Asesoramiento profesional y condiciones comerciales claras y flexibles."', author: '— Laura G., Jefa de Compras (Hotel boutique, Recoleta)' }
+        ];
+
+        let idx = 0;
+        const textEl = document.getElementById('testimonial-text');
+        const authorEl = document.getElementById('testimonial-author');
+        if(!textEl || !authorEl) return;
+
+        function show(i){
+          textEl.style.opacity = 0;
+          authorEl.style.opacity = 0;
+          setTimeout(()=>{
+            textEl.textContent = testimonials[i].text;
+            authorEl.textContent = testimonials[i].author;
+            textEl.style.opacity = 1;
+            authorEl.style.opacity = 1;
+          }, 300);
+        }
+
+        // Start
+        show(0);
+        setInterval(()=>{
+          idx = (idx + 1) % testimonials.length;
+          show(idx);
+        }, 6000);
+      })();
+    </script>
+
+    <script>
+      (function(){
+        const header = document.querySelector('.site-header');
+        if(!header) return;
+
+        function onScroll(){
+          if(window.scrollY > 16){
+            header.classList.add('scrolled');
+          } else {
+            header.classList.remove('scrolled');
+          }
+        }
+
+        // Run on load and on scroll
+        onScroll();
+        window.addEventListener('scroll', onScroll, { passive: true });
+      })();
+    </script>
+
+  </body>
+</html>
