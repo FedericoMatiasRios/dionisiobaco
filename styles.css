@@ -220,4 +220,30 @@ a{
   cursor: pointer;
 }
 
+/* On touch devices (iPhone/smartphones) background-attachment:fixed
+   can cause Safari to render the background image zoomed/shifted.
+   Disable the fixed attachment for coarse pointer / no-hover devices. */
+@media (hover: none) and (pointer: coarse) {
+  body.site-bg {
+    background-attachment: scroll;
+    /* keep cover but prefer centering for smaller viewports */
+    background-position: center top;
+  }
+}
+
+/* On narrow viewports use `cover` but limit how much the image is scaled up.
+   `cover` keeps the intended visual while `background-size: auto`
+   reduces the extreme zoom that was happening on some phones. Adjust
+   the percentage if you want more or less crop. */
+@media (max-width: 820px) {
+  body.site-bg {
+    background-attachment: scroll;
+    background-position: center top;
+    background-repeat: no-repeat;
+    /* prefer cover-like behavior but constrain scale to avoid over-zoom */
+    background-size: auto;
+    background-color: var(--ebano);
+  }
+}
+
 
