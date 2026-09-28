@@ -29,9 +29,19 @@
           <a href="#about" class="link-primary">Nosotros</a>
           <a href="https://wa.me/5491125369170?text=Hola%2C%20quisiera%20la%20lista%20de%20precios%20actualizada%2C%20por%20favor" class="ml-4 px-4 py-2 btn-primary rounded-md shadow" target="_blank" rel="noopener">Lista de precios</a>
         </nav>
-        <button class="md:hidden p-2 rounded-md" style="color:var(--marfil); background:transparent; border:1px solid rgba(241,232,213,0.06);">☰</button>
+        <button class="md:hidden p-2 rounded-md js-nav-toggle" aria-controls="mobile-nav" aria-expanded="false" style="color:var(--marfil); background:transparent; border:1px solid rgba(241,232,213,0.06);">☰</button>
       </div>
     </header>
+
+    <!-- Mobile nav overlay -->
+    <div id="mobile-nav" class="mobile-nav" aria-hidden="true">
+      <button class="btn-close" data-close aria-label="Cerrar menú">✕</button>
+      <div class="inner">
+        <a href="productos/" class="link-primary" data-close>Productos</a>
+        <a href="#about" class="link-primary" data-close>Nosotros</a>
+        <a href="https://wa.me/5491125369170?text=Hola%2C%20quisiera%20la%20lista%20de%20precios%20actualizada%2C%20por%20favor" class="btn-primary rounded-md" target="_blank" rel="noopener">Lista de precios</a>
+      </div>
+    </div>
 
     <main class="mt-8">
       <!-- Hero -->
@@ -271,6 +281,23 @@
             statusEl.textContent = 'No se encontraron imágenes. Suba archivos a img/productos/ o genere img/productos/index.json con una lista de nombres.';
           }
         })();
+      })();
+    </script>
+
+    <script>
+      (function(){
+        const toggle = document.querySelector('.js-nav-toggle');
+        const menu = document.getElementById('mobile-nav');
+        if(!toggle || !menu) return;
+
+        function open(){ menu.classList.add('open'); menu.setAttribute('aria-hidden','false'); toggle.setAttribute('aria-expanded','true'); }
+        function close(){ menu.classList.remove('open'); menu.setAttribute('aria-hidden','true'); toggle.setAttribute('aria-expanded','false'); }
+
+        toggle.addEventListener('click', e=>{ e.preventDefault(); if(menu.classList.contains('open')) close(); else open(); });
+        // close when clicking links inside
+        menu.querySelectorAll('[data-close]').forEach(a=> a.addEventListener('click', ()=> close()));
+        // close on escape
+        document.addEventListener('keydown', e=>{ if(e.key === 'Escape') close(); });
       })();
     </script>
 
