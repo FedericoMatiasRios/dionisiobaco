@@ -417,6 +417,24 @@
         window.addEventListener('scroll', onScroll, { passive: true });
       })();
     </script>
-
+    <script>
+      document.addEventListener('click', function (e) {
+          const link = e.target.closest('a[href]');
+      
+          if (!link) return;
+      
+          const href = link.href;
+      
+          if (
+              href.includes('wa.me') ||
+              href.includes('api.whatsapp.com') ||
+              href.includes('whatsapp.com')
+          ) {
+              gtag('event', 'whatsapp_click', {
+                  link_url: href
+              });
+          }
+      });
+    </script>
   </body>
 </html>
