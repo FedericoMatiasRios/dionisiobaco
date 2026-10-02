@@ -11,6 +11,16 @@
     <link href="../styles.css" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
     <link rel="icon" href="../img/dionisiobaco-logo5.webp">
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-9GV4LY4XCT">
+    </script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+    
+      gtag('config', 'G-9GV4LY4XCT');
+    </script>
   </head>
   <body class="antialiased site-bg">
     <header class="site-header sticky top-0 z-40">
@@ -327,6 +337,25 @@
         onScroll();
         window.addEventListener('scroll', onScroll, { passive: true });
       })();
+    </script>
+    <script>
+      document.addEventListener('click', function (e) {
+          const link = e.target.closest('a[href]');
+      
+          if (!link) return;
+      
+          const href = link.href;
+      
+          if (
+              href.includes('wa.me') ||
+              href.includes('api.whatsapp.com') ||
+              href.includes('whatsapp.com')
+          ) {
+              gtag('event', 'whatsapp_click', {
+                  link_url: href
+              });
+          }
+      });
     </script>
   </body>
 </html>
